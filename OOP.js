@@ -129,3 +129,97 @@ console.log(mycar.#mileage); // incorrect
 
  it promotes code reusablity
 */
+
+class Vehicles {
+  constructor(type) {
+    this.type = type;
+  }
+
+  start() {
+    console.log(`${this.type} is starting`);
+  }
+
+  stop() {
+    console.log(`${this.type} is stopping`);
+  }
+}
+
+class Car extends Vehicles {
+  // car inherits start() and stop() from vehicles
+  constructor(brand, model) {
+    super("Car"); // calls the baseclass constructor
+    this.brand = brand;
+    this.model = model;
+  }
+
+  honk() {
+    console.log(`${this.brand} ${this.model} says: beep beep!`);
+  }
+}
+
+const latestCar = new Car("Toyota", "Camry");
+latestCar.start();
+latestCar.honk();
+latestCar.stop();
+
+/*
+ polymorphism 
+ It allows you to write code which can work with different datatypes of different number of arguments
+ compile time polymorphism - method overloading
+ multiple methods with the same name but different parameters
+ Note: JS doesn't support it natively.
+ JS allows one method with a given name in a class
+
+ run time polymorphism - method overridding
+ child class overrides a method from the base class
+*/
+
+class Calculator {
+  add(a, b, c) {
+    if (typeof c === "number") {
+      return a + b + c;
+    }
+    return a + b;
+  }
+}
+
+const calc = new Calculator();
+console.log(calc.add(2, 3));
+console.log(calc.add(2, 3, 4));
+
+// runtime
+
+class Animal {
+  speak() {
+    console.log("anmial speak");
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log("Dog barks");
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    console.log("Cat meows");
+  }
+}
+
+function makeItSpeak(animal) {
+  animal.speak();
+}
+
+const a = new Animal();
+const d = new Dog();
+const c = new Cat();
+
+makeItSpeak(a);
+makeItSpeak(d);
+makeItSpeak(c);
+
+/*
+ abstraction is only showing the necessary features to the outside 
+ and hiding the complex internal details
+*/
